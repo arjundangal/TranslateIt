@@ -113,9 +113,9 @@
 				9874AB5A288BCF0000CC370D /* words.json */,
 				9874AB5C288BCF7700CC370D /* Domain */,
 				9874AB59288BCEDE00CC370D /* Data */,
+				9874AB65288BD89600CC370D /* UI */,
 				9874AB27288BCB6200CC370D /* AppDelegate.swift */,
 				9874AB29288BCB6200CC370D /* SceneDelegate.swift */,
-				9874AB2B288BCB6200CC370D /* GameViewController.swift */,
 				9874AB30288BCB6400CC370D /* Assets.xcassets */,
 				9874AB32288BCB6400CC370D /* LaunchScreen.storyboard */,
 				9874AB35288BCB6400CC370D /* Info.plist */,
@@ -156,6 +156,14 @@
 				9874AB5F288BD06300CC370D /* WordPair.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		9874AB65288BD89600CC370D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9874AB2B288BCB6200CC370D /* GameViewController.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
