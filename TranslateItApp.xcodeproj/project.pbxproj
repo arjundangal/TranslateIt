@@ -17,6 +17,8 @@
 		9874AB4B288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB4A288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift */; };
 		9874AB58288BCDC100CC370D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9874AB57288BCDC100CC370D /* README.md */; };
 		9874AB5B288BCF0000CC370D /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 9874AB5A288BCF0000CC370D /* words.json */; };
+		9874AB5E288BCFAA00CC370D /* WordListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB5D288BCFAA00CC370D /* WordListLoader.swift */; };
+		9874AB60288BD06300CC370D /* WordPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB5F288BD06300CC370D /* WordPair.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		9874AB4A288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateItAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9874AB57288BCDC100CC370D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9874AB5A288BCF0000CC370D /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
+		9874AB5D288BCFAA00CC370D /* WordListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListLoader.swift; sourceTree = "<group>"; };
+		9874AB5F288BD06300CC370D /* WordPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPair.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 		9874AB26288BCB6200CC370D /* TranslateItApp */ = {
 			isa = PBXGroup;
 			children = (
+				9874AB5C288BCF7700CC370D /* Domain */,
 				9874AB5A288BCF0000CC370D /* words.json */,
 				9874AB59288BCEDE00CC370D /* Data */,
 				9874AB27288BCB6200CC370D /* AppDelegate.swift */,
@@ -136,6 +141,15 @@
 			children = (
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		9874AB5C288BCF7700CC370D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				9874AB5D288BCFAA00CC370D /* WordListLoader.swift */,
+				9874AB5F288BD06300CC370D /* WordPair.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,7 +285,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9874AB2C288BCB6200CC370D /* ViewController.swift in Sources */,
+				9874AB60288BD06300CC370D /* WordPair.swift in Sources */,
 				9874AB28288BCB6200CC370D /* AppDelegate.swift in Sources */,
+				9874AB5E288BCFAA00CC370D /* WordListLoader.swift in Sources */,
 				9874AB2A288BCB6200CC370D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
