@@ -9,15 +9,13 @@ import Foundation
 
 final class LocalWordsLoader: WordListLoader {
     
-    struct InvalidDataError: Error {}
-    
-    func loadWords(url: URL, completion: @escaping (WordList) -> Void) throws{
+    func loadWords(url: URL, completion: @escaping (WordList) -> Void) {
         do {
             let data = try Data(contentsOf: url, options: .mappedIfSafe)
             let wordList =  try WordsMapper.map(data: data)
             completion(wordList)
         }catch {
-            throw InvalidDataError()
+            completion([])
          }
     }
 }

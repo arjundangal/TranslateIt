@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+final class GameViewController: UIViewController {
    
     let titleLabel: UILabel =  {
         let label = UILabel()
@@ -51,14 +51,52 @@ class GameViewController: UIViewController {
          return button
     }()
     
+    private var gameEngine: GameEngine?
+    
+    convenience init(gameEngine: GameEngine){
+        self.init()
+        self.gameEngine = gameEngine
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
+        startGame()
+        incorrectBtn.addTarget(self, action: #selector(incorrectBtnTapped), for: .touchUpInside)
+        correctBtn.addTarget(self, action: #selector(correctBtnTapped), for: .touchUpInside)
      }
     
-    func setupViews() {
+    private func startGame() {
+        guard let gameEngine = gameEngine else {
+            return
+        }
+        
+        gameEngine.gameState = {[weak self]  state in
+            guard let self = self else {return}
+            switch state {
+            case .question(let pair):
+                self.questionLabel.text = pair.originalWord
+                self.answerLabel.text = pair.translatedWord
+             }
+        }
+        
+        gameEngine.start()
+        
+     }
+    
+    
+    @objc private func incorrectBtnTapped() {
+        gameEngine?.next()
+    }
+    
+    @objc private func correctBtnTapped() {
+        gameEngine?.next()
+    }
+    
+    
+    private func setupViews() {
         view.addSubview(titleLabel)
         view.addSubview(questionLabel)
         view.addSubview(answerLabel)

@@ -21,6 +21,7 @@
 		9874AB60288BD06300CC370D /* WordPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB5F288BD06300CC370D /* WordPair.swift */; };
 		9874AB62288BD25E00CC370D /* LocalWordsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB61288BD25E00CC370D /* LocalWordsLoader.swift */; };
 		9874AB64288BD69C00CC370D /* WordsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB63288BD69C00CC370D /* WordsMapper.swift */; };
+		9874AB68288BDBBD00CC370D /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB67288BDBBD00CC370D /* GameEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		9874AB5F288BD06300CC370D /* WordPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPair.swift; sourceTree = "<group>"; };
 		9874AB61288BD25E00CC370D /* LocalWordsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWordsLoader.swift; sourceTree = "<group>"; };
 		9874AB63288BD69C00CC370D /* WordsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsMapper.swift; sourceTree = "<group>"; };
+		9874AB67288BDBBD00CC370D /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		9874AB26288BCB6200CC370D /* TranslateItApp */ = {
 			isa = PBXGroup;
 			children = (
+				9874AB66288BDBB000CC370D /* Game Engine */,
 				9874AB5A288BCF0000CC370D /* words.json */,
 				9874AB5C288BCF7700CC370D /* Domain */,
 				9874AB59288BCEDE00CC370D /* Data */,
@@ -164,6 +167,14 @@
 				9874AB2B288BCB6200CC370D /* GameViewController.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		9874AB66288BDBB000CC370D /* Game Engine */ = {
+			isa = PBXGroup;
+			children = (
+				9874AB67288BDBBD00CC370D /* GameEngine.swift */,
+			);
+			path = "Game Engine";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +312,7 @@
 				9874AB64288BD69C00CC370D /* WordsMapper.swift in Sources */,
 				9874AB2C288BCB6200CC370D /* GameViewController.swift in Sources */,
 				9874AB60288BD06300CC370D /* WordPair.swift in Sources */,
+				9874AB68288BDBBD00CC370D /* GameEngine.swift in Sources */,
 				9874AB28288BCB6200CC370D /* AppDelegate.swift in Sources */,
 				9874AB5E288BCFAA00CC370D /* WordListLoader.swift in Sources */,
 				9874AB62288BD25E00CC370D /* LocalWordsLoader.swift in Sources */,

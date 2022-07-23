@@ -16,7 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         guard let windowSecene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowSecene)
-        window?.rootViewController = GameViewController()
+        let wordsURL = URL(fileURLWithPath:  Bundle.main.path(forResource: "words", ofType: "json")!)
+        let gameEngine = GameEngine(loader: LocalWordsLoader(), url: wordsURL)
+        let gameVc = GameViewController(gameEngine: gameEngine)
+       
+        window?.rootViewController = gameVc
         window?.makeKeyAndVisible()
     }
  
