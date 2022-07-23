@@ -12,9 +12,7 @@
 		9874AB2C288BCB6200CC370D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB2B288BCB6200CC370D /* GameViewController.swift */; };
 		9874AB31288BCB6400CC370D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9874AB30288BCB6400CC370D /* Assets.xcassets */; };
 		9874AB34288BCB6400CC370D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9874AB32288BCB6400CC370D /* LaunchScreen.storyboard */; };
-		9874AB3F288BCB6400CC370D /* TranslateItAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB3E288BCB6400CC370D /* TranslateItAppTests.swift */; };
 		9874AB49288BCB6400CC370D /* TranslateItAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB48288BCB6400CC370D /* TranslateItAppUITests.swift */; };
-		9874AB4B288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB4A288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift */; };
 		9874AB58288BCDC100CC370D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9874AB57288BCDC100CC370D /* README.md */; };
 		9874AB5B288BCF0000CC370D /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 9874AB5A288BCF0000CC370D /* words.json */; };
 		9874AB5E288BCFAA00CC370D /* WordListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB5D288BCFAA00CC370D /* WordListLoader.swift */; };
@@ -25,6 +23,7 @@
 		9874AB6D288C034600CC370D /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB6C288C034600CC370D /* GameViewModel.swift */; };
 		9874AB6F288C038900CC370D /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB6E288C038900CC370D /* GameData.swift */; };
 		9874AB71288C03D600CC370D /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB70288C03D600CC370D /* GameState.swift */; };
+		9874AB74288C1B5800CC370D /* WordsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB73288C1B5800CC370D /* WordsMapperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +52,8 @@
 		9874AB33288BCB6400CC370D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9874AB35288BCB6400CC370D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9874AB3A288BCB6400CC370D /* TranslateItAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslateItAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9874AB3E288BCB6400CC370D /* TranslateItAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateItAppTests.swift; sourceTree = "<group>"; };
 		9874AB44288BCB6400CC370D /* TranslateItAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslateItAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9874AB48288BCB6400CC370D /* TranslateItAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateItAppUITests.swift; sourceTree = "<group>"; };
-		9874AB4A288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateItAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9874AB57288BCDC100CC370D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9874AB5A288BCF0000CC370D /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 		9874AB5D288BCFAA00CC370D /* WordListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListLoader.swift; sourceTree = "<group>"; };
@@ -67,6 +64,7 @@
 		9874AB6C288C034600CC370D /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9874AB6E288C038900CC370D /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		9874AB70288C03D600CC370D /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		9874AB73288C1B5800CC370D /* WordsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsMapperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +132,7 @@
 		9874AB3D288BCB6400CC370D /* TranslateItAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				9874AB3E288BCB6400CC370D /* TranslateItAppTests.swift */,
+				9874AB72288C1B4100CC370D /* Data */,
 			);
 			path = TranslateItAppTests;
 			sourceTree = "<group>";
@@ -143,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				9874AB48288BCB6400CC370D /* TranslateItAppUITests.swift */,
-				9874AB4A288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift */,
 			);
 			path = TranslateItAppUITests;
 			sourceTree = "<group>";
@@ -184,6 +181,14 @@
 				9874AB70288C03D600CC370D /* GameState.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		9874AB72288C1B4100CC370D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9874AB73288C1B5800CC370D /* WordsMapperTests.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,7 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9874AB3F288BCB6400CC370D /* TranslateItAppTests.swift in Sources */,
+				9874AB74288C1B5800CC370D /* WordsMapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +349,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9874AB4B288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift in Sources */,
 				9874AB49288BCB6400CC370D /* TranslateItAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
