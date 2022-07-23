@@ -22,6 +22,7 @@
 		9874AB62288BD25E00CC370D /* LocalWordsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB61288BD25E00CC370D /* LocalWordsLoader.swift */; };
 		9874AB64288BD69C00CC370D /* WordsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB63288BD69C00CC370D /* WordsMapper.swift */; };
 		9874AB68288BDBBD00CC370D /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB67288BDBBD00CC370D /* GameEngine.swift */; };
+		9874AB6A288BEDC600CC370D /* GameDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB69288BEDC600CC370D /* GameDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		9874AB61288BD25E00CC370D /* LocalWordsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWordsLoader.swift; sourceTree = "<group>"; };
 		9874AB63288BD69C00CC370D /* WordsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsMapper.swift; sourceTree = "<group>"; };
 		9874AB67288BDBBD00CC370D /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		9874AB69288BEDC600CC370D /* GameDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				9874AB67288BDBBD00CC370D /* GameEngine.swift */,
+				9874AB69288BEDC600CC370D /* GameDataProvider.swift */,
 			);
 			path = "Game Engine";
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				9874AB64288BD69C00CC370D /* WordsMapper.swift in Sources */,
 				9874AB2C288BCB6200CC370D /* GameViewController.swift in Sources */,
+				9874AB6A288BEDC600CC370D /* GameDataProvider.swift in Sources */,
 				9874AB60288BD06300CC370D /* WordPair.swift in Sources */,
 				9874AB68288BDBBD00CC370D /* GameEngine.swift in Sources */,
 				9874AB28288BCB6200CC370D /* AppDelegate.swift in Sources */,

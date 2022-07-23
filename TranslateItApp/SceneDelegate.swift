@@ -11,13 +11,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
        
         guard let windowSecene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowSecene)
         let wordsURL = URL(fileURLWithPath:  Bundle.main.path(forResource: "words", ofType: "json")!)
-        let gameEngine = GameEngine(loader: LocalWordsLoader(), url: wordsURL)
+        let loader = LocalWordsLoader(url: wordsURL)
+        let provider = GameDataProvider(loader: loader)
+        let gameEngine = GameEngine(gameDataProvider: provider)
         let gameVc = GameViewController(gameEngine: gameEngine)
        
         window?.rootViewController = gameVc

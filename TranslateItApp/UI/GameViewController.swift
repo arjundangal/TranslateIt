@@ -77,12 +77,14 @@ final class GameViewController: UIViewController {
             guard let self = self else {return}
             switch state {
             case .question(let pair):
-                self.questionLabel.text = pair.originalWord
-                self.answerLabel.text = pair.translatedWord
+                self.questionLabel.text = pair.question
+                self.answerLabel.text = pair.answer
              }
         }
-        
-        gameEngine.start()
+        DispatchQueue.main.async {
+            gameEngine.start()
+
+        }
         
      }
     
