@@ -35,15 +35,19 @@ final class GameViewModel {
         startTimer()
       }
  
-    func answer(isCorrect: Bool) {
-        checkAnswer(isCorrect: isCorrect)
+    func answer(isCorrect: Bool?) {
+        if checkAnswer(userChoice: isCorrect){
+            updateCorrectCounter()
+        }else{
+            updateIncorrectCounter()
+        }
         if currentQuestionIndex == totalQuestionsCount {
             currentQuestionIndex = 0
         }
         gameState?(.question(data: questions[currentQuestionIndex]))
         currentQuestionIndex += 1
-        elapsedSeconds = 0
-     }
+ 
+    }
     
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: updateTime)
@@ -52,20 +56,19 @@ final class GameViewModel {
  
     private func updateTime(timer: Timer) {
          print("timer", elapsedSeconds)
-        if elapsedSeconds > 3 {
-            answer(isCorrect: false)
+        if elapsedSeconds > 4 {
+            answer(isCorrect: nil)
             elapsedSeconds = 0
         }else {
             elapsedSeconds += 1
         }
     }
     
-    private func checkAnswer(isCorrect: Bool) {
-        if isCorrect == questions[currentQuestionIndex - 1].isCorrect {
-            updateCorrectCounter()
-        }else {
-            updateIncorrectCounter()
+    private func checkAnswer(userChoice: Bool?) -> Bool{
+        guard let userChoice = userChoice else {
+            return false
         }
+        return userChoice == questions[currentQuestionIndex - 1].isCorrect
     }
     
     private func updateCorrectCounter() {
