@@ -8,5 +8,6 @@
 import Foundation
 
 protocol WordListLoader {
-    func loadWords(completion: @escaping (WordList) -> Void)
+    func loadWords(url: URL,
+                   completion: @escaping (WordList) -> Void) throws
 }

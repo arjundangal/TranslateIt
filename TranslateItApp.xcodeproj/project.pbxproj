@@ -19,6 +19,8 @@
 		9874AB5B288BCF0000CC370D /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 9874AB5A288BCF0000CC370D /* words.json */; };
 		9874AB5E288BCFAA00CC370D /* WordListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB5D288BCFAA00CC370D /* WordListLoader.swift */; };
 		9874AB60288BD06300CC370D /* WordPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB5F288BD06300CC370D /* WordPair.swift */; };
+		9874AB62288BD25E00CC370D /* LocalWordsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB61288BD25E00CC370D /* LocalWordsLoader.swift */; };
+		9874AB64288BD69C00CC370D /* WordsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB63288BD69C00CC370D /* WordsMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		9874AB5A288BCF0000CC370D /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 		9874AB5D288BCFAA00CC370D /* WordListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListLoader.swift; sourceTree = "<group>"; };
 		9874AB5F288BD06300CC370D /* WordPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPair.swift; sourceTree = "<group>"; };
+		9874AB61288BD25E00CC370D /* LocalWordsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWordsLoader.swift; sourceTree = "<group>"; };
+		9874AB63288BD69C00CC370D /* WordsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +110,8 @@
 		9874AB26288BCB6200CC370D /* TranslateItApp */ = {
 			isa = PBXGroup;
 			children = (
-				9874AB5C288BCF7700CC370D /* Domain */,
 				9874AB5A288BCF0000CC370D /* words.json */,
+				9874AB5C288BCF7700CC370D /* Domain */,
 				9874AB59288BCEDE00CC370D /* Data */,
 				9874AB27288BCB6200CC370D /* AppDelegate.swift */,
 				9874AB29288BCB6200CC370D /* SceneDelegate.swift */,
@@ -139,6 +143,8 @@
 		9874AB59288BCEDE00CC370D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9874AB61288BD25E00CC370D /* LocalWordsLoader.swift */,
+				9874AB63288BD69C00CC370D /* WordsMapper.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -284,10 +290,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9874AB64288BD69C00CC370D /* WordsMapper.swift in Sources */,
 				9874AB2C288BCB6200CC370D /* ViewController.swift in Sources */,
 				9874AB60288BD06300CC370D /* WordPair.swift in Sources */,
 				9874AB28288BCB6200CC370D /* AppDelegate.swift in Sources */,
 				9874AB5E288BCFAA00CC370D /* WordListLoader.swift in Sources */,
+				9874AB62288BD25E00CC370D /* LocalWordsLoader.swift in Sources */,
 				9874AB2A288BCB6200CC370D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
