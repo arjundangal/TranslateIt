@@ -42,6 +42,7 @@ final class GameViewModel {
         }
         gameState?(.question(data: questions[currentQuestionIndex]))
         currentQuestionIndex += 1
+        elapsedSeconds = 0
      }
     
     private func startTimer() {
