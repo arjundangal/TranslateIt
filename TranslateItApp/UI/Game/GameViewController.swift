@@ -14,7 +14,7 @@ final class GameViewController: UIViewController {
         label.text = "Is this correct translation?"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         return label
     }()
     
@@ -35,6 +35,24 @@ final class GameViewController: UIViewController {
         return label
     }()
     
+    let correctCounterLabel: UILabel =  {
+        let label = UILabel()
+        label.text = ""
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textAlignment = .right
+        return label
+    }()
+    
+    let incorrectCounterLabel: UILabel =  {
+        let label = UILabel()
+        label.text = ""
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textAlignment = .right
+        return label
+    }()
+    
     let correctBtn: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -51,13 +69,12 @@ final class GameViewController: UIViewController {
          return button
     }()
     
-    private var gameEngine: GameEngine?
+    private var gameEngine: GameViewModel?
     
-    convenience init(gameEngine: GameEngine){
+    convenience init(gameEngine: GameViewModel){
         self.init()
         self.gameEngine = gameEngine
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +90,14 @@ final class GameViewController: UIViewController {
             return
         }
         
+        gameEngine.correctAnswers = {[weak self] correctAnswers in
+            self?.correctCounterLabel.text = correctAnswers
+        }
+        
+        gameEngine.incorrectAnswers = {[weak self] incorrectAnswers in
+            self?.incorrectCounterLabel.text = incorrectAnswers
+        }
+        
         gameEngine.gameState = {[weak self]  state in
             guard let self = self else {return}
             switch state {
@@ -81,24 +106,22 @@ final class GameViewController: UIViewController {
                 self.answerLabel.text = pair.answer
              }
         }
-        DispatchQueue.main.async {
-            gameEngine.start()
-
-        }
-        
+        gameEngine.start()
+ 
      }
     
-    
     @objc private func incorrectBtnTapped() {
-        gameEngine?.next()
+        gameEngine?.answer(isCorrect: false)
     }
     
     @objc private func correctBtnTapped() {
-        gameEngine?.next()
+        gameEngine?.answer(isCorrect: true)
     }
     
     
     private func setupViews() {
+        view.addSubview(correctCounterLabel)
+        view.addSubview(incorrectCounterLabel)
         view.addSubview(titleLabel)
         view.addSubview(questionLabel)
         view.addSubview(answerLabel)
@@ -114,10 +137,17 @@ final class GameViewController: UIViewController {
         view.addSubview(buttonsStackView)
         
         NSLayoutConstraint.activate([
+            correctCounterLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            correctCounterLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            correctCounterLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            
+            incorrectCounterLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            incorrectCounterLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            incorrectCounterLabel.topAnchor.constraint(equalTo: correctCounterLabel.bottomAnchor, constant: 0),
             
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            titleLabel.topAnchor.constraint(equalTo: incorrectCounterLabel.bottomAnchor, constant: 30),
 
             questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             questionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -129,7 +159,6 @@ final class GameViewController: UIViewController {
             buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             buttonsStackView.bottomAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
- 
         ])
     }
     
