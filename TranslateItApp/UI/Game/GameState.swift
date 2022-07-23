@@ -9,4 +9,5 @@ import Foundation
 
 enum GameState {
     case question(data: GameData)
+    case ended
  }

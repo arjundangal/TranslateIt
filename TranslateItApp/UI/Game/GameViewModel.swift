@@ -17,7 +17,7 @@ final class GameViewModel {
     private var incorrectCount = 0
     private var questions: [GameData] = []
     private var currentQuestionIndex = 0
-    private let totalQuestionsCount = 20
+    private let totalQuestionsCount = 15
     private var elapsedSeconds = 0
     private var timer:Timer?
     
@@ -41,11 +41,12 @@ final class GameViewModel {
         }else{
             updateIncorrectCounter()
         }
-        if currentQuestionIndex == totalQuestionsCount {
-            currentQuestionIndex = 0
+        if currentQuestionIndex == totalQuestionsCount - 1 || incorrectCount > 2 {
+            endGame()
+        }else{
+            gameState?(.question(data: questions[currentQuestionIndex]))
+            currentQuestionIndex += 1
         }
-        gameState?(.question(data: questions[currentQuestionIndex]))
-        currentQuestionIndex += 1
  
     }
     
@@ -79,6 +80,11 @@ final class GameViewModel {
     private func updateIncorrectCounter() {
         incorrectCount += 1
         incorrectAnswers?("Incorrect : \(incorrectCount)")
+     }
+    
+    private func endGame() {
+        timer?.invalidate()
+        gameState?(.ended)
     }
     
 }

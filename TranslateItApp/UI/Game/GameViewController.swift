@@ -100,11 +100,17 @@ final class GameViewController: UIViewController {
         
         gameEngine.gameState = {[weak self]  state in
             guard let self = self else {return}
+            print(state)
             switch state {
             case .question(let pair):
                 self.questionLabel.text = pair.question
                 self.answerLabel.text = pair.answer
-             }
+            case .ended:
+                self.questionLabel.text = ""
+                self.answerLabel.text = ""
+                self.correctBtn.isHidden = true
+                self.incorrectBtn.isHidden = true
+            }
         }
         gameEngine.start()
  
