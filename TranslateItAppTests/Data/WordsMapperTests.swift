@@ -10,15 +10,21 @@ import XCTest
 
 class WordsMapperTests: XCTestCase {
     
-    func test_wordsMapper_mapsCorrectly_whenCorrectJsonIsProvided() {
+    func test_wordsMapper_throwsError_whenMalformedJsonIsProvided() {
+        let invalidData = Data("Invalid Data".utf8)
+        XCTAssertThrowsError(try WordsMapper.map(data: invalidData))
+    }
+    
+    func test_wordsMapper_mapsCorrectly_whenCorrectJsonIsProvided() throws {
         let item1 = makeData(english: "English", spanish: "Espanyol")
         let item2 = makeData(english: "Translate", spanish: "SpanishTranslate")
         
-        let result = try! WordsMapper.map(data: makeItemsJSON([item1.json, item2.json]))
+        let result = try WordsMapper.map(data: makeItemsJSON([item1.json, item2.json]))
         
         XCTAssertEqual(result, [item1.item, item2.item])
         
     }
+    
     
     //MARK: - Helpers
     
