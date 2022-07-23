@@ -16,6 +16,7 @@
 		9874AB49288BCB6400CC370D /* TranslateItAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB48288BCB6400CC370D /* TranslateItAppUITests.swift */; };
 		9874AB4B288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB4A288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift */; };
 		9874AB58288BCDC100CC370D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9874AB57288BCDC100CC370D /* README.md */; };
+		9874AB5B288BCF0000CC370D /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 9874AB5A288BCF0000CC370D /* words.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		9874AB48288BCB6400CC370D /* TranslateItAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateItAppUITests.swift; sourceTree = "<group>"; };
 		9874AB4A288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateItAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9874AB57288BCDC100CC370D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9874AB5A288BCF0000CC370D /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,8 @@
 		9874AB26288BCB6200CC370D /* TranslateItApp */ = {
 			isa = PBXGroup;
 			children = (
+				9874AB5A288BCF0000CC370D /* words.json */,
+				9874AB59288BCEDE00CC370D /* Data */,
 				9874AB27288BCB6200CC370D /* AppDelegate.swift */,
 				9874AB29288BCB6200CC370D /* SceneDelegate.swift */,
 				9874AB2B288BCB6200CC370D /* ViewController.swift */,
@@ -125,6 +129,13 @@
 				9874AB4A288BCB6400CC370D /* TranslateItAppUITestsLaunchTests.swift */,
 			);
 			path = TranslateItAppUITests;
+			sourceTree = "<group>";
+		};
+		9874AB59288BCEDE00CC370D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9874AB34288BCB6400CC370D /* LaunchScreen.storyboard in Resources */,
+				9874AB5B288BCF0000CC370D /* words.json in Resources */,
 				9874AB31288BCB6400CC370D /* Assets.xcassets in Resources */,
 				9874AB58288BCDC100CC370D /* README.md in Resources */,
 			);
