@@ -118,7 +118,6 @@
 		9874AB26288BCB6200CC370D /* TranslateItApp */ = {
 			isa = PBXGroup;
 			children = (
-				9874AB66288BDBB000CC370D /* Game Engine */,
 				9874AB5A288BCF0000CC370D /* words.json */,
 				9874AB5C288BCF7700CC370D /* Domain */,
 				9874AB59288BCEDE00CC370D /* Data */,
@@ -174,13 +173,6 @@
 				9874AB6B288C032E00CC370D /* Game */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		9874AB66288BDBB000CC370D /* Game Engine */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Game Engine";
 			sourceTree = "<group>";
 		};
 		9874AB6B288C032E00CC370D /* Game */ = {

@@ -18,6 +18,8 @@ final class GameViewModel {
     private var questions: [GameData] = []
     private var currentQuestionIndex = 0
     private let totalQuestionsCount = 20
+    private var elapsedSeconds = 0
+    private var timer:Timer?
     
     init(gameDataProvider: GameDataProvider) {
         gameDataProvider.makeData(count: totalQuestionsCount) { gameData in
@@ -30,7 +32,8 @@ final class GameViewModel {
         incorrectAnswers?("Incorrect : \(correctCount)")
         gameState?(.question(data: questions.first!))
         currentQuestionIndex += 1
-    }
+        startTimer()
+      }
  
     func answer(isCorrect: Bool) {
         checkAnswer(isCorrect: isCorrect)
@@ -39,6 +42,21 @@ final class GameViewModel {
         }
         gameState?(.question(data: questions[currentQuestionIndex]))
         currentQuestionIndex += 1
+     }
+    
+    private func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: updateTime)
+        timer?.fire()
+    }
+ 
+    private func updateTime(timer: Timer) {
+         print("timer", elapsedSeconds)
+        if elapsedSeconds > 3 {
+            answer(isCorrect: false)
+            elapsedSeconds = 0
+        }else {
+            elapsedSeconds += 1
+        }
     }
     
     private func checkAnswer(isCorrect: Bool) {
