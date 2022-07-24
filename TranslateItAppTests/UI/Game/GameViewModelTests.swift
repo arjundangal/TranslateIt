@@ -64,6 +64,18 @@ class GameViewModelTests: XCTestCase {
 
     }
     
+    func test_init_bothCountersAreZero() {
+        let (sut, scheduler, disposeBag) = makeSUT(questions: [])
+        
+        let incorrectCounter = scheduler.createObserver(String.self)
+        let correctCounter = scheduler.createObserver(String.self)
+        
+        sut.output.incorrectCounter.bind(to: incorrectCounter).disposed(by: disposeBag)
+        sut.output.correctCounter.bind(to: correctCounter).disposed(by: disposeBag)
+        
+        XCTAssertEqual(incorrectCounter.events.last, .init(time: 0, value: .next("Incorrect: 0")))
+        XCTAssertEqual(correctCounter.events.last, .init(time: 0, value: .next("Correct: 0")))
+     }
     
     //MARK: - Helpers
      private func makeSUT(questions: WordList) -> (GameViewModel,TestScheduler,DisposeBag) {
