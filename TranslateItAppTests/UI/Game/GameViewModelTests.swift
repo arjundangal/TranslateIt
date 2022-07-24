@@ -10,20 +10,10 @@ import XCTest
 
 class GameViewModelTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func test_init_showsFirstQuestion() {
-        
-        let testQuestions = WordPair(originalWord: "English", translatedWord: "Espanyol")
-        let loader = LoaderSpy(wordList: [testQuestions])
-        let provider = GameDataProvider(loader: loader)
-        let sut = GameViewModel(gameDataProvider: provider, totalRounds: 1)
+        let testQuestions = makeSampleQuestions()
+        let sut = makeSUT(questions: testQuestions)
+       
         let expectation = expectation(description: "Waiting for completion")
         var result: GameData?
 
@@ -41,25 +31,39 @@ class GameViewModelTests: XCTestCase {
         
         wait(for: [expectation], timeout: 1.0)
  
-        XCTAssertEqual(testQuestions.originalWord, result?.question)
-        XCTAssertEqual(testQuestions.translatedWord, result?.answer)
+        XCTAssertEqual(testQuestions.first?.originalWord, result?.question)
+        XCTAssertEqual(testQuestions.first?.translatedWord, result?.answer)
         
     }
  
     //MARK: - Helpers
     
+    private func makeSUT(questions: WordList) -> GameViewModel {
+        let loader = LoaderSpy(questions: questions)
+        let provider = GameDataProvider(loader: loader)
+        let sut = GameViewModel(gameDataProvider: provider, totalRounds: questions.count)
+        return sut
+    }
+    
+    private let anyQuestion = WordPair(originalWord: "English", translatedWord: "Espanyol")
+
+    private func makeSampleQuestions() -> [WordPair] {
+        return [WordPair(originalWord: "English", translatedWord: "Espanyol"),
+                WordPair(originalWord: "English1", translatedWord: "Espanyol1"),
+                WordPair(originalWord: "English2", translatedWord: "Espanyol2")]
+    }
    
     
     class LoaderSpy: WordListLoader {
 
-        private let wordList: WordList
+        private let questions: WordList
         
-        init(wordList: WordList) {
-            self.wordList = wordList
+        init(questions: WordList) {
+            self.questions = questions
         }
  
         func loadWords(completion: @escaping (WordList) -> Void) {
-            completion(wordList)
+            completion(questions)
         }
         
         
