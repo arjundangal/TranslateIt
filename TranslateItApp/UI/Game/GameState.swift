@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GameState {
+enum GameState: Equatable {
     case question(data: GameData)
     case ended
  }
