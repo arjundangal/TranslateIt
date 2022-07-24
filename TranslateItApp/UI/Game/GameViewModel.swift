@@ -17,7 +17,7 @@ final class GameViewModel {
     private var incorrectCount = 0
     private var questions: [GameData] = []
     private var currentQuestionIndex = 0
-     private var elapsedSeconds = 0
+    private var elapsedSeconds = 0
     private var timer:Timer?
     
     init(gameDataProvider: GameDataProvider, totalRounds: Int) {
@@ -55,7 +55,6 @@ final class GameViewModel {
     }
  
     private func updateTime(timer: Timer) {
-         print("timer", elapsedSeconds)
         if elapsedSeconds > 4 {
             answer(isCorrect: nil)
             elapsedSeconds = 0

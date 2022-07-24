@@ -9,34 +9,42 @@ import XCTest
 @testable import TranslateItApp
 
 class GameViewModelTests: XCTestCase {
-
+    
     func test_init_showsFirstQuestion() {
+       
         let testQuestions = makeSampleQuestions()
         let sut = makeSUT(questions: testQuestions)
-       
-        let expectation = expectation(description: "Waiting for completion")
-        var result: GameData?
-
-        sut.gameState = { state in
-            switch state {
-            case .question(let data):
-                result = data
-                expectation.fulfill()
-            case .ended:
-                break
-            }
+        let expectedGameData = GameData(question: testQuestions.first?.originalWord ?? "",
+                                        answer: testQuestions.first?.translatedWord ?? "",
+                                        isCorrect: true)
+        
+        expect(sut, toCompleteWithResult: .question(data: expectedGameData)) {
+            sut.start()
         }
 
-        sut.start()
-        
-        wait(for: [expectation], timeout: 1.0)
- 
-        XCTAssertEqual(testQuestions.first?.originalWord, result?.question)
-        XCTAssertEqual(testQuestions.first?.translatedWord, result?.answer)
-        
     }
- 
+    
     //MARK: - Helpers
+    
+    private func expect(_ sut : GameViewModel,  toCompleteWithResult expectedResult : GameState, when action : () -> Void, file : StaticString =  #filePath, line : UInt = #line){
+        
+        let exp = expectation(description: "Waiting for load to complete")
+        
+        sut.gameState = {[weak self] receivedResult in
+            guard self != nil else {return}
+            switch(receivedResult, expectedResult){
+            case let (.question(data: receivedData), .question(data: expectedData)):
+                XCTAssertEqual(receivedData, expectedData, file : file, line : line)
+                
+            default :
+                XCTFail("Expected result \(expectedResult) got \(receivedResult)", file: file, line : line)
+            }
+            exp.fulfill()
+        }
+        action()
+        
+        wait(for : [exp], timeout: 1.0)
+    }
     
     private func makeSUT(questions: WordList) -> GameViewModel {
         let loader = LoaderSpy(questions: questions)
@@ -46,27 +54,27 @@ class GameViewModelTests: XCTestCase {
     }
     
     private let anyQuestion = WordPair(originalWord: "English", translatedWord: "Espanyol")
-
+    
     private func makeSampleQuestions() -> [WordPair] {
         return [WordPair(originalWord: "English", translatedWord: "Espanyol"),
                 WordPair(originalWord: "English1", translatedWord: "Espanyol1"),
                 WordPair(originalWord: "English2", translatedWord: "Espanyol2")]
     }
-   
     
-    class LoaderSpy: WordListLoader {
-
+    
+   private class LoaderSpy: WordListLoader {
+        
         private let questions: WordList
         
         init(questions: WordList) {
             self.questions = questions
         }
- 
+        
         func loadWords(completion: @escaping (WordList) -> Void) {
             completion(questions)
         }
         
         
     }
-
+    
 }
