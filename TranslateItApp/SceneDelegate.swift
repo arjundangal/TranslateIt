@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let wordsURL = URL(fileURLWithPath:  Bundle.main.path(forResource: "words", ofType: "json")!)
         let loader = LocalWordsLoader(url: wordsURL)
         let provider = GameDataProvider(loader: loader)
-        let gameEngine = GameViewModel(gameDataProvider: provider)
-        let gameVc = GameViewController(gameEngine: gameEngine)
+        let viewModel = GameViewModel(gameDataProvider: provider, roundCount: 15, timeLimit: 5)
+        let gameVc = GameViewController(viewModel: viewModel)
        
         window?.rootViewController = gameVc
         window?.makeKeyAndVisible()

@@ -5,6 +5,9 @@
 //  Created by Arjun Dangal on 23/7/2022.
 //
 
+
+
+import RxSwift
 import UIKit
 
 final class GameViewController: UIViewController {
@@ -69,56 +72,62 @@ final class GameViewController: UIViewController {
          return button
     }()
     
-    private var gameEngine: GameViewModel?
+    private var viewModel: GameViewModel?
     
-    convenience init(gameEngine: GameViewModel){
+    let disposeBag = DisposeBag()
+    
+    convenience init(viewModel: GameViewModel){
         self.init()
-        self.gameEngine = gameEngine
+        self.viewModel = viewModel
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
-        startGame()
-        incorrectBtn.addTarget(self, action: #selector(incorrectBtnTapped), for: .touchUpInside)
-        correctBtn.addTarget(self, action: #selector(correctBtnTapped), for: .touchUpInside)
+        bindViewModel()
+        
      }
     
-    private func startGame() {
-        guard let gameEngine = gameEngine else {
+    private func bindViewModel() {
+        guard let viewModel = viewModel else {
             return
         }
+
         
-        gameEngine.correctAnswers = {[weak self] correctAnswers in
-            self?.correctCounterLabel.text = correctAnswers
+        DispatchQueue.main.async {
+            viewModel.input.startGameCommand.onNext(())
         }
         
-        gameEngine.incorrectAnswers = {[weak self] incorrectAnswers in
-            self?.incorrectCounterLabel.text = incorrectAnswers
-        }
+        correctBtn.rx.tap.map{_ in true}.bind(to: viewModel.input.attemptAnswer).disposed(by: disposeBag)
+        incorrectBtn.rx.tap.map{_ in false}.bind(to: viewModel.input.attemptAnswer).disposed(by: disposeBag)
         
-        gameEngine.gameState = {[weak self]  state in
+        viewModel.output.gameState.subscribe(onNext: {[weak self] (state) in
             guard let self = self else {return}
             switch state {
             case .question(let pair):
                 self.questionLabel.text = pair.question
                 self.answerLabel.text = pair.answer
-             }
-        }
-        gameEngine.start()
+            case .ended:
+                self.questionLabel.text = ""
+                self.answerLabel.text = ""
+                self.correctBtn.isHidden = true
+                self.incorrectBtn.isHidden = true
+            }
+        }).disposed(by: disposeBag)
+        
+        viewModel.output.correctCounter.subscribe(onNext: {[weak self] (counter) in
+            guard let self = self else {return}
+            self.correctCounterLabel.text = counter
+        }).disposed(by: disposeBag)
+
+        viewModel.output.incorrectCounter.subscribe(onNext: {[weak self] (counter) in
+            guard let self = self else {return}
+            self.incorrectCounterLabel.text = counter
+        }).disposed(by: disposeBag)
  
-     }
-    
-    @objc private func incorrectBtnTapped() {
-        gameEngine?.answer(isCorrect: false)
     }
-    
-    @objc private func correctBtnTapped() {
-        gameEngine?.answer(isCorrect: true)
-    }
-    
-    
+ 
     private func setupViews() {
         view.addSubview(correctCounterLabel)
         view.addSubview(incorrectCounterLabel)

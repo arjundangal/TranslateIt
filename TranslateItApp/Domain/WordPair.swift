@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WordPair {
+struct WordPair: Equatable {
     let originalWord: String
     let translatedWord: String
 }

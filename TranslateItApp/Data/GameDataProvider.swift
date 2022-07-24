@@ -15,14 +15,22 @@ final class GameDataProvider {
         self.loader = loader
     }
 
-    func makeData(count: Int, completion: @escaping ([GameData]) -> Void){
+    func makeData(roundCount: Int, completion: @escaping ([GameData]) -> Void){
         
         loader.loadWords { questions in
-            let roundsQuestion = questions.shuffled().prefix(count)
-            let correctPairsCount = Int(Double(count) * 0.25)
+            
+            guard questions.count >  roundCount else {
+                completion(questions.map{.init(question: $0.originalWord, answer: $0.translatedWord, isCorrect: true)})
+                return
+            }
+            
+            
+            let roundsQuestion = questions.shuffled().prefix(roundCount)
+            let correctPairsCount = Int(Double(roundCount) * 0.25)
             let correctPairs = roundsQuestion.shuffled().prefix(correctPairsCount).map{
                 GameData(question: $0.originalWord, answer: $0.translatedWord, isCorrect: true)
             }
+            
             let remainingQuestions = roundsQuestion.suffix(roundsQuestion.count - correctPairsCount)
             let randomAnswers = remainingQuestions.map{$0.translatedWord}.shuffled()
             
