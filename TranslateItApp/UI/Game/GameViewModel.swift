@@ -17,12 +17,11 @@ final class GameViewModel {
     private var incorrectCount = 0
     private var questions: [GameData] = []
     private var currentQuestionIndex = 0
-    private let totalQuestionsCount = 15
-    private var elapsedSeconds = 0
+     private var elapsedSeconds = 0
     private var timer:Timer?
     
-    init(gameDataProvider: GameDataProvider) {
-        gameDataProvider.makeData(count: totalQuestionsCount) { gameData in
+    init(gameDataProvider: GameDataProvider, totalRounds: Int) {
+        gameDataProvider.makeData(roundCount: totalRounds) { gameData in
              self.questions = gameData
          }
     }
@@ -41,7 +40,7 @@ final class GameViewModel {
         }else{
             updateIncorrectCounter()
         }
-        if currentQuestionIndex == totalQuestionsCount - 1 || incorrectCount > 2 {
+        if currentQuestionIndex == questions.count - 1 || incorrectCount > 2 {
             endGame()
         }else{
             gameState?(.question(data: questions[currentQuestionIndex]))
