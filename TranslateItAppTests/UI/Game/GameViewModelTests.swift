@@ -85,8 +85,19 @@ class GameViewModelTests: XCTestCase {
  
         XCTAssertEqual(correctCounter.events.last, .init(time: 0, value: .next("Correct: 1")))
      }
-   
+    
+    func test_incorrectAttempt_updatesIncorrectCounter() {
+        let testQuestions = makeSampleQuestions()
+        let (sut, scheduler, disposeBag) = makeSUT(questions: testQuestions)
+        let counter = scheduler.createObserver(String.self)
+        sut.output.incorrectCounter.bind(to: counter).disposed(by: disposeBag)
+        sut.output.gameState.subscribe().disposed(by: disposeBag)
 
+        sut.input.startGameCommand.onNext(())
+        sut.input.attemptAnswer.onNext(false)
+ 
+        XCTAssertEqual(counter.events.last, .init(time: 0, value: .next("Incorrect: 1")))
+     }
     
     //MARK: - Helpers
      private func makeSUT(questions: WordList) -> (GameViewModel,TestScheduler,DisposeBag) {

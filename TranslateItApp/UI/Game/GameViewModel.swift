@@ -60,7 +60,7 @@ final class GameViewModel {
         
         let gameState = gameCommands.withLatestFrom(roundData){answer, gameData in return (answer, gameData) }.flatMapLatest { answer,gameData -> Observable<GameState> in
              if currentQuestionIndex != -1 {
-                if answer == nil || !gameData[currentQuestionIndex].isCorrect {
+                if answer == nil || answer != gameData[currentQuestionIndex].isCorrect {
                     incorrectAttempts.accept(incorrectAttempts.value + 1)
                 }else {
                     correctAttempts.accept(correctAttempts.value + 1)
