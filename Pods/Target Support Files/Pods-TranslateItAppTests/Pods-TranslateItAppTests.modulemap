@@ -1,0 +1,6 @@
+framework module Pods_TranslateItAppTests {
+  umbrella header "Pods-TranslateItAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
