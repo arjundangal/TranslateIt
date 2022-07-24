@@ -31,7 +31,7 @@ class GameViewModelTests: XCTestCase {
     }
     
     
-    func test_showsSecondQuestions_whenFirstQuestionIsAttempted() {
+    func test_showsSecondQuestion_whenFirstQuestionIsAttempted() {
         let testQuestions = makeSampleQuestions()
         let (sut, scheduler, disposeBag) = makeSUT(questions: testQuestions)
         let expectedGameData = GameData(question: testQuestions[1].originalWord ,
@@ -47,6 +47,22 @@ class GameViewModelTests: XCTestCase {
 
     }
     
+    func test_showsThirdQuestion_whenSecondQuestionIsAttempted() {
+        let testQuestions = makeSampleQuestions()
+        let (sut, scheduler, disposeBag) = makeSUT(questions: testQuestions)
+        let expectedGameData = GameData(question: testQuestions[2].originalWord ,
+                                        answer: testQuestions[2].translatedWord ,
+                                        isCorrect: true)
+        let expectedState = scheduler.createObserver(GameState.self)
+        sut.output.gameState.bind(to: expectedState).disposed(by: disposeBag)
+        
+        sut.input.startGameCommand.onNext(())
+        sut.input.attemptAnswer.onNext(true)
+        sut.input.attemptAnswer.onNext(true)
+        
+        XCTAssertEqual(expectedState.events.last!, .init(time: 0, value:  .next(GameState.question(data: expectedGameData))))
+
+    }
     
     
     //MARK: - Helpers
