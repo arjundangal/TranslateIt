@@ -27,9 +27,7 @@ final class GameViewModel {
    
     
     init(gameDataProvider: GameDataProvider, roundCount: Int, timeLimit: Int){
-        
-        
-        
+
         let roundData = Observable<[GameData]>.create { observer in
             
             gameDataProvider.makeData(roundCount: 15) { data in

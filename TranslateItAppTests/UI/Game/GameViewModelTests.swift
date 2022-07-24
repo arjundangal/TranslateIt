@@ -20,7 +20,6 @@ class GameViewModelTests: XCTestCase {
         let expectedGameData = GameData(question: testQuestions.first?.originalWord ?? "",
                                         answer: testQuestions.first?.translatedWord ?? "",
                                         isCorrect: true)
- 
         let expectedState = scheduler.createObserver(GameState.self)
         sut.output.gameState.bind(to: expectedState).disposed(by: disposeBag)
         
@@ -44,7 +43,6 @@ class GameViewModelTests: XCTestCase {
         sut.input.attemptAnswer.onNext(true)
         
         XCTAssertEqual(expectedState.events.last!, .init(time: 0, value:  .next(GameState.question(data: expectedGameData))))
-
     }
     
     func test_showsThirdQuestion_whenSecondQuestionIsAttempted() {
@@ -66,16 +64,29 @@ class GameViewModelTests: XCTestCase {
     
     func test_init_bothCountersAreZero() {
         let (sut, scheduler, disposeBag) = makeSUT(questions: [])
-        
         let incorrectCounter = scheduler.createObserver(String.self)
         let correctCounter = scheduler.createObserver(String.self)
-        
         sut.output.incorrectCounter.bind(to: incorrectCounter).disposed(by: disposeBag)
         sut.output.correctCounter.bind(to: correctCounter).disposed(by: disposeBag)
         
         XCTAssertEqual(incorrectCounter.events.last, .init(time: 0, value: .next("Incorrect: 0")))
         XCTAssertEqual(correctCounter.events.last, .init(time: 0, value: .next("Correct: 0")))
      }
+    
+    func test_correctAttempt_updatesCorrectCounter() {
+        let testQuestions = makeSampleQuestions()
+        let (sut, scheduler, disposeBag) = makeSUT(questions: testQuestions)
+        let correctCounter = scheduler.createObserver(String.self)
+        sut.output.correctCounter.bind(to: correctCounter).disposed(by: disposeBag)
+        sut.output.gameState.subscribe().disposed(by: disposeBag)
+        
+        sut.input.startGameCommand.onNext(())
+        sut.input.attemptAnswer.onNext(true)
+ 
+        XCTAssertEqual(correctCounter.events.last, .init(time: 0, value: .next("Correct: 1")))
+     }
+   
+
     
     //MARK: - Helpers
      private func makeSUT(questions: WordList) -> (GameViewModel,TestScheduler,DisposeBag) {
