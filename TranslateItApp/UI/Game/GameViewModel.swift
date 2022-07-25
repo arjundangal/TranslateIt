@@ -24,7 +24,7 @@ final class GameViewModel {
         let incorrectCounter: Observable<String>
     }
 
-    init(gameDataProvider: GameDataProvider, roundCount: Int, roundDuration: Double){
+    init(gameDataProvider: GameDataProvider, timerProvider: Timer.Type, roundCount: Int, roundDuration: Double){
 
         var currentQuestionIndex = -1
         
@@ -59,7 +59,7 @@ final class GameViewModel {
             if incorrectAttempts.value < 3 &&  currentQuestionIndex < gameData.count {
                    var elapsedSeconds = 0
                     if timer == nil {
-                        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
+                        timer = timerProvider.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
                              if elapsedSeconds > Int(roundDuration) - 1 {
                                  attemptAnswer.onNext(nil)
                                  elapsedSeconds = 0
