@@ -23,12 +23,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         guard let windowSecene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowSecene)
+        configureWindow()
+        startGameFlow()
+    }
+    
+    func configureWindow() {
         window?.rootViewController = navigationController
         navigationController.isNavigationBarHidden = true
         window?.makeKeyAndVisible()
-        
-        gameFlow.start()
     }
+    
+    func startGameFlow() {
+        gameFlow.start()
+     }
  
 }
  

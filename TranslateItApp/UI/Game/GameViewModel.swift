@@ -61,7 +61,6 @@ final class GameViewModel {
                 elapsedSeconds = 0
                 if timer == nil {
                     timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
-                         print("elapsed seconds \(elapsedSeconds)")
                          if elapsedSeconds > Int(roundDuration) - 1 {
                              attemptAnswer.onNext(nil)
                              elapsedSeconds = 0

@@ -57,7 +57,6 @@ final class GameViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Correct", for: .normal)
         button.setTitleColor(.blue, for: .normal)
-        button.backgroundColor = .yellow
         button.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
         return button
     }()
