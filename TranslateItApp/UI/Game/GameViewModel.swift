@@ -26,7 +26,6 @@ final class GameViewModel {
 
     init(gameDataProvider: GameDataProvider, roundCount: Int, roundDuration: Double){
 
-        var elapsedSeconds = 0
         var currentQuestionIndex = -1
         
         let startGameCommand = PublishSubject<Void>()
@@ -57,25 +56,27 @@ final class GameViewModel {
             }
             
             currentQuestionIndex += 1
-            if currentQuestionIndex < gameData.count {
-                elapsedSeconds = 0
-                if timer == nil {
-                    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
-                         if elapsedSeconds > Int(roundDuration) - 1 {
-                             attemptAnswer.onNext(nil)
-                             elapsedSeconds = 0
-                         }else {
-                             elapsedSeconds += 1
-                         }
-                     })
+            if incorrectAttempts.value < 3 &&  currentQuestionIndex < gameData.count {
+                   var elapsedSeconds = 0
+                    if timer == nil {
+                        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
+                             if elapsedSeconds > Int(roundDuration) - 1 {
+                                 attemptAnswer.onNext(nil)
+                                 elapsedSeconds = 0
+                             }else {
+                                 elapsedSeconds += 1
+                             }
+                         })
+                    }
+                    return Observable.just(GameState.question(data: gameData[currentQuestionIndex]))
+                    
+                }else {
+                    timer?.invalidate()
+                    timer = nil
+                    return .just(.ended(result: .init(correctAttempts: correctAttempts.value, incorrectAttempts: incorrectAttempts.value)))
                 }
-                return Observable.just(GameState.question(data: gameData[currentQuestionIndex]))
-                
-            }else {
-                timer?.invalidate()
-                timer = nil
-                return .just(.ended(result: .init(correctAttempts: correctAttempts.value, incorrectAttempts: incorrectAttempts.value)))
-            }
+            
+ 
         }
         
         let correctCounter = correctAttempts.asObservable().flatMapLatest{
