@@ -142,7 +142,7 @@ class GameViewModelTests: XCTestCase {
      private func makeSUT(questions: WordList) -> (GameViewModel,TestScheduler,DisposeBag) {
         let loader = LoaderSpy(questions: questions)
         let provider = GameDataProvider(loader: loader)
-         let sut = GameViewModel(gameDataProvider: provider, roundCount: questions.count, roundDuration: 5)
+         let sut = GameViewModel(gameDataProvider: provider, timerProvider: Timer.self, roundCount: questions.count, roundDuration: 5)
          
          return (sut, TestScheduler(initialClock: 0), DisposeBag())
     }
