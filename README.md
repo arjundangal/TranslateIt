@@ -36,10 +36,11 @@ Game Data Provider provides 25 % of the correct pairs where as rest 75% can be e
 
 ### Decisions made because of restricted time
 * Didn't focus on UI part
-* Didn't unit test timer part
-
+ 
+ 
 ### What would be the first thing to improve or add if there had been more time
 Increase Test Coverage
+Improve Game Mechanics 
 
 ### Future Plans
 * Improve UI
