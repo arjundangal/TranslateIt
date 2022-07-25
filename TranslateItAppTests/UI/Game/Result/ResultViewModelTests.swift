@@ -15,8 +15,8 @@ class ResultViewModelTests: XCTestCase {
         let incorrectAttempts = 10
         let sut = ResultViewModel(correctAttempts: correctAttempts, incorrectAttempts: incorrectAttempts, startNewGame: { })
         
-        XCTAssertEqual(sut.correctAnswers, "\(Constants.String.correct)\(correctAttempts)")
-        XCTAssertEqual(sut.incorrectAnswers, "\(Constants.String.incorrect)\(incorrectAttempts)")
+        XCTAssertEqual(sut.correctAnswers, "\(Constants.Game.correct)\(correctAttempts)")
+        XCTAssertEqual(sut.incorrectAnswers, "\(Constants.Game.incorrect)\(incorrectAttempts)")
     }
     
 }

@@ -12,7 +12,7 @@ final class GameViewController: UIViewController {
     
     let titleLabel: UILabel =  {
         let label = UILabel()
-        label.text = Constants.String.gameTitle
+        label.text = Constants.Game.gameTitle
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
@@ -59,7 +59,7 @@ final class GameViewController: UIViewController {
         let button = UIButton()
         button.accessibilityIdentifier = "correctButton"
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(Constants.String.correctButtonTitle, for: .normal)
+        button.setTitle(Constants.Game.correctButtonTitle, for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
         return button
@@ -69,7 +69,7 @@ final class GameViewController: UIViewController {
         let button = UIButton()
         button.accessibilityIdentifier = "incorrectButton"
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(Constants.String.incorrectButtonTitle, for: .normal)
+        button.setTitle(Constants.Game.incorrectButtonTitle, for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
         return button

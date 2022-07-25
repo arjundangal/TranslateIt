@@ -13,11 +13,11 @@ final class ResultViewModel {
     private let incorrectAttempts: Int
     
     var correctAnswers: String {
-        return "\(Constants.String.correct)\(correctAttempts)"
+        return "\(Constants.Game.correct)\(correctAttempts)"
     }
     
     var incorrectAnswers: String {
-        return "\(Constants.String.incorrect)\(incorrectAttempts)"
+        return "\(Constants.Game.incorrect)\(incorrectAttempts)"
     }
     
     private(set) var startNewGame: (() -> Void)

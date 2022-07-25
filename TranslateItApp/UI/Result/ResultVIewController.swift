@@ -13,7 +13,7 @@ final class ResultViewController: UIViewController {
     
     let titleLabel: UILabel =  {
         let label = UILabel()
-        label.text = "Final Results"
+        label.text = Constants.Result.title
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
@@ -39,7 +39,7 @@ final class ResultViewController: UIViewController {
     let startButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Start New Game", for: .normal)
+        button.setTitle(Constants.Result.startGameButtonTitle, for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
         return button
