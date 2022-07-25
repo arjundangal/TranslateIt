@@ -11,4 +11,5 @@ struct GameData: Equatable {
     let question: String
     let answer: String
     let isCorrect: Bool
+    let duration: Double
 }

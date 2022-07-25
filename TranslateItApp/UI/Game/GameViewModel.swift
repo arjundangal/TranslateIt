@@ -24,14 +24,13 @@ final class GameViewModel {
         let incorrectCounter: Observable<String>
     }
 
-    init(gameDataProvider: GameDataProvider, roundCount: Int, timeLimit: Int){
+    init(gameDataProvider: GameDataProvider, roundCount: Int, roundDuration: Double){
 
         var elapsedSeconds = 0
         var currentQuestionIndex = -1
         
         let startGameCommand = PublishSubject<Void>()
         let attemptAnswer = PublishSubject<Bool?>()
-        
         let correctAttempts = BehaviorRelay<Int>(value: 0)
         let incorrectAttempts = BehaviorRelay<Int>(value: 0)
         
@@ -43,11 +42,12 @@ final class GameViewModel {
             currentQuestionIndex = -1
             correctAttempts.accept(0)
             incorrectAttempts.accept(0)
-            return GameViewModel.makeRoundsData(from: gameDataProvider)
-
+            return GameViewModel.makeRoundsData(from: gameDataProvider,
+            roundCount: roundCount,
+            roundDuration: roundDuration)
         }
         
-        let gameState = gameCommands.withLatestFrom(roundData){answer, gameData in return (answer, gameData) }.flatMapLatest { answer,gameData -> Observable<GameState> in
+        let gameState = gameCommands.withLatestFrom(roundData){answer, gameData in return (answer, gameData)}.flatMapLatest { answer,gameData -> Observable<GameState> in
             if currentQuestionIndex != -1 && currentQuestionIndex < gameData.count{
                 if answer == nil || answer != gameData[currentQuestionIndex].isCorrect {
                     incorrectAttempts.accept(incorrectAttempts.value + 1)
@@ -59,9 +59,9 @@ final class GameViewModel {
             currentQuestionIndex += 1
             if currentQuestionIndex < gameData.count {
                 if timer == nil {
-                    timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: {_ in
+                    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
                          print("elapsed seconds \(elapsedSeconds)")
-                         if elapsedSeconds > timeLimit - 1 {
+                         if elapsedSeconds > Int(roundDuration) - 1 {
                              attemptAnswer.onNext(nil)
                              elapsedSeconds = 0
                          }else {
@@ -97,10 +97,10 @@ final class GameViewModel {
         
     }
     
-    static func makeRoundsData(from provider: GameDataProvider) -> Observable<[GameData]> {
+    static func makeRoundsData(from provider: GameDataProvider, roundCount: Int, roundDuration: Double) -> Observable<[GameData]> {
         return Observable<[GameData]>.create { observer in
             
-            provider.makeData(roundCount: 15) { data in
+            provider.makeData(roundCount: roundCount, roundDuration: roundDuration) { data in
                 observer.onNext(data)
             }
             return Disposables.create {

@@ -10,17 +10,17 @@ import Foundation
 final class GameDataProvider {
     
     private let loader: WordListLoader
-    
+ 
     init(loader: WordListLoader) {
         self.loader = loader
-    }
+     }
 
-    func makeData(roundCount: Int, completion: @escaping ([GameData]) -> Void){
+    func makeData(roundCount: Int, roundDuration: Double, completion: @escaping ([GameData]) -> Void){
         
         loader.loadWords { questions in
             
             guard questions.count >  roundCount else {
-                completion(questions.map{.init(question: $0.originalWord, answer: $0.translatedWord, isCorrect: true)})
+                completion(questions.map{.init(question: $0.originalWord, answer: $0.translatedWord, isCorrect: true, duration: roundDuration)})
                 return
             }
             
@@ -28,7 +28,7 @@ final class GameDataProvider {
             let roundsQuestion = questions.shuffled().prefix(roundCount)
             let correctPairsCount = Int(Double(roundCount) * 0.25)
             let correctPairs = roundsQuestion.shuffled().prefix(correctPairsCount).map{
-                GameData(question: $0.originalWord, answer: $0.translatedWord, isCorrect: true)
+                GameData(question: $0.originalWord, answer: $0.translatedWord, isCorrect: true, duration: roundDuration)
             }
             
             let remainingQuestions = roundsQuestion.suffix(roundsQuestion.count - correctPairsCount)
@@ -36,7 +36,7 @@ final class GameDataProvider {
             
             let incorrectPairs = remainingQuestions.map{ pair -> GameData in
                 let answer = randomAnswers.randomElement() ?? pair.translatedWord
-                return GameData(question: pair.originalWord, answer: answer, isCorrect: answer == pair.translatedWord)
+                return GameData(question: pair.originalWord, answer: answer, isCorrect: answer == pair.translatedWord, duration: roundDuration)
              }
 
             completion((correctPairs + incorrectPairs).shuffled())
