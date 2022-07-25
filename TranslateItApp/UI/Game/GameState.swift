@@ -9,5 +9,10 @@ import Foundation
 
 enum GameState: Equatable {
     case question(data: GameData)
-    case ended
+    case ended(result: GameResult)
  }
+
+struct GameResult: Equatable {
+   let correctAttempts: Int
+   let incorrectAttempts: Int
+}
