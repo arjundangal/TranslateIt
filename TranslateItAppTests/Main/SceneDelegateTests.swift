@@ -31,6 +31,19 @@ class SceneDelegateTests:  XCTestCase {
         XCTAssertTrue(rootViewController is UINavigationController, "Expected root as \(UINavigationController.self), got \(String(describing: rootViewController)) instead")
     }
     
+    func test_startGameFlow_setsGameViewControllerAsTopViewController() {
+        let sut = SceneDelegate()
+        sut.window = UIWindowSpy()
+
+        sut.configureWindow()
+        sut.startGameFlow()
+
+        let rootViewController = sut.window?.rootViewController as? UINavigationController
+ 
+        XCTAssertTrue(rootViewController?.topViewController is GameViewController, "Expected root as \(GameViewController.self), got \(String(describing: rootViewController)) instead")
+    }
+    
+    
     private class UIWindowSpy: UIWindow {
         var makeKeyAndVisibleCallCount = 0
         
