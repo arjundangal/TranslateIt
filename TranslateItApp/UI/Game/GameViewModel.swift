@@ -23,24 +23,15 @@ final class GameViewModel {
         let correctCounter: Observable<String>
         let incorrectCounter: Observable<String>
     }
-    
-   
-    
+
     init(gameDataProvider: GameDataProvider, roundCount: Int, timeLimit: Int){
 
-        let roundData = Observable<[GameData]>.create { observer in
-            
-            gameDataProvider.makeData(roundCount: 15) { data in
-                observer.onNext(data)
-            }
-            return Disposables.create {
-                
-             }
-        }
+       
         var elapsedSeconds = 0
         var currentQuestionIndex = -1
         
         let startGameCommand = PublishSubject<Void>()
+//        let restartGameCommand = PublishSubject<Void>()
         let attemptAnswer = PublishSubject<Bool?>()
         
         let correctAttempts = BehaviorRelay<Int>(value: 0)
@@ -57,6 +48,13 @@ final class GameViewModel {
             }
         })
         
+        let roundData = startGameCommand.flatMapLatest{ () -> Observable<[GameData]> in 
+            currentQuestionIndex = -1
+            correctAttempts.accept(0)
+            incorrectAttempts.accept(0)
+            return GameViewModel.makeRoundsData(from: gameDataProvider)
+
+        }
         
         let gameState = gameCommands.withLatestFrom(roundData){answer, gameData in return (answer, gameData) }.flatMapLatest { answer,gameData -> Observable<GameState> in
             if currentQuestionIndex != -1 && currentQuestionIndex < gameData.count{
@@ -87,16 +85,25 @@ final class GameViewModel {
         
         
         
-        
         self.input = Input(startGameCommand: startGameCommand.asObserver(),
                            attemptAnswer: attemptAnswer.asObserver())
-        
-        
         
         self.output = Output(gameState: gameState,
                              correctCounter: correctCounter,
                              incorrectCounter: incorrectCounter)
         
+    }
+    
+    static func makeRoundsData(from provider: GameDataProvider) -> Observable<[GameData]> {
+        return Observable<[GameData]>.create { observer in
+            
+            provider.makeData(roundCount: 15) { data in
+                observer.onNext(data)
+            }
+            return Disposables.create {
+                
+            }
+        }
     }
  
 }

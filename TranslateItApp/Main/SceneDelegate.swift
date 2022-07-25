@@ -32,13 +32,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
  
 }
-
-class GameUIComposer {
-    static func compose(with loader: WordListLoader) -> GameViewController {
-        let provider = GameDataProvider(loader: loader)
-        let viewModel = GameViewModel(gameDataProvider: provider, roundCount: 15, timeLimit: 5)
-        let gameVc = GameViewController(viewModel: viewModel)
-        return gameVc
-    }
-}
  

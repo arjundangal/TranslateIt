@@ -11,6 +11,7 @@ final class GameFlow {
     
     private let navigationController: UINavigationController
     private let loader: WordListLoader
+    private var onRestartCommand: (() -> Void)?
     
     init(navigationController: UINavigationController, loader: WordListLoader){
         self.navigationController = navigationController
@@ -18,8 +19,11 @@ final class GameFlow {
     }
     
     func start() {
-        let gameVc = GameUIComposer.compose(with: loader)
+        let (gameViewModel,gameVc) = GameUIComposer.compose(with: loader)
         gameVc.finish = showResult
+        self.onRestartCommand = { 
+            gameViewModel.input.startGameCommand.onNext(())
+        }
         navigationController.viewControllers = [gameVc]
     }
     
@@ -31,5 +35,6 @@ final class GameFlow {
     
     private func restartGame() {
         navigationController.dismiss(animated: true, completion: nil)
+        onRestartCommand?()
      }
 }
