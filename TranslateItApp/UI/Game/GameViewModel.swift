@@ -31,7 +31,6 @@ final class GameViewModel {
         var currentQuestionIndex = -1
         
         let startGameCommand = PublishSubject<Void>()
-//        let restartGameCommand = PublishSubject<Void>()
         let attemptAnswer = PublishSubject<Bool?>()
         
         let correctAttempts = BehaviorRelay<Int>(value: 0)
