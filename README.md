@@ -35,8 +35,8 @@ Around 30 minutes for understanding projects, around 2 hour for model layer, aro
 Game Data Provider provides 25 % of the correct pairs where as rest 75% can be either correct or wrong
 
 ### Decisions made because of restricted time
-Didn't focus on UI part
-Didn't unit test timer part
+* Didn't focus on UI part
+* Didn't unit test timer part
 
 ### What would be the first thing to improve or add if there had been more time
 Increase Test Coverage
