@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		984107A9288EBB7C00F7D17F /* ResultVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984107A8288EBB7C00F7D17F /* ResultVIewController.swift */; };
 		9874AB28288BCB6200CC370D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB27288BCB6200CC370D /* AppDelegate.swift */; };
 		9874AB2A288BCB6200CC370D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB29288BCB6200CC370D /* SceneDelegate.swift */; };
 		9874AB2C288BCB6200CC370D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874AB2B288BCB6200CC370D /* GameViewController.swift */; };
@@ -52,6 +53,7 @@
 		2DA9AD1255B438791BCF0181 /* Pods_TranslateItAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TranslateItAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CC0610D2F8086E9A628F43B /* Pods-TranslateItApp-TranslateItAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslateItApp-TranslateItAppUITests.release.xcconfig"; path = "Target Support Files/Pods-TranslateItApp-TranslateItAppUITests/Pods-TranslateItApp-TranslateItAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5C40D5301719F45BCB2D276C /* Pods_TranslateItApp_TranslateItAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TranslateItApp_TranslateItAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		984107A8288EBB7C00F7D17F /* ResultVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVIewController.swift; sourceTree = "<group>"; };
 		9874AB24288BCB6200CC370D /* TranslateItApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranslateItApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9874AB27288BCB6200CC370D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9874AB29288BCB6200CC370D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,8 +131,15 @@
 				047D487609862EAFD565984B /* Pods-TranslateItAppTests.debug.xcconfig */,
 				B33331B5D364824DC26CE91D /* Pods-TranslateItAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		984107A7288EBB7200F7D17F /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				984107A8288EBB7C00F7D17F /* ResultVIewController.swift */,
+			);
+			path = Result;
 			sourceTree = "<group>";
 		};
 		9874AB1B288BCB6200CC370D = {
@@ -211,6 +220,7 @@
 		9874AB65288BD89600CC370D /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				984107A7288EBB7200F7D17F /* Result */,
 				9874AB6B288C032E00CC370D /* Game */,
 			);
 			path = UI;
@@ -516,6 +526,7 @@
 				9874AB6F288C038900CC370D /* GameData.swift in Sources */,
 				9874AB28288BCB6200CC370D /* AppDelegate.swift in Sources */,
 				9874AB5E288BCFAA00CC370D /* WordListLoader.swift in Sources */,
+				984107A9288EBB7C00F7D17F /* ResultVIewController.swift in Sources */,
 				9874AB62288BD25E00CC370D /* LocalWordsLoader.swift in Sources */,
 				9874AB6D288C034600CC370D /* GameViewModel.swift in Sources */,
 				9874AB2A288BCB6200CC370D /* SceneDelegate.swift in Sources */,
