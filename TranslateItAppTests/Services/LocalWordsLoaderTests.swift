@@ -27,4 +27,19 @@ class LocalWordsLoaderTests: XCTestCase {
         XCTAssertEqual(result?.first?.translatedWord, "escuela primaria")
     }
 
+    func test_loadWords_loadsNoWords_whenNoFileisFound() {
+        let url =  URL(string: "anyurl.com")!
+        let sut = LocalWordsLoader(url: url)
+        var result: WordList?
+        let exp = expectation(description: "Waiting for load completion")
+        sut.loadWords { wordList in
+            result = wordList
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(result?.count, 0)
+     }
+    
 }
