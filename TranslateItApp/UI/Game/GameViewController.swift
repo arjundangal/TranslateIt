@@ -73,7 +73,7 @@ final class GameViewController: UIViewController {
     }()
     
     private var viewModel: GameViewModel?
-    
+    public var finish: ((GameResult) -> Void)?
     let disposeBag = DisposeBag()
     
     convenience init(viewModel: GameViewModel){
@@ -108,12 +108,9 @@ final class GameViewController: UIViewController {
             case .question(let pair):
                 self.questionLabel.text = pair.question
                 self.answerLabel.text = pair.answer
-            case .ended:
-                self.questionLabel.text = ""
-                self.answerLabel.text = ""
-                self.correctBtn.isHidden = true
-                self.incorrectBtn.isHidden = true
-            }
+            case .ended(let result):
+                self.finish?(result)
+             }
         }).disposed(by: disposeBag)
         
         viewModel.output.correctCounter.subscribe(onNext: {[weak self] (counter) in

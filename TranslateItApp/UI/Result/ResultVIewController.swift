@@ -7,8 +7,9 @@
 
 
 import UIKit
-
-class ResultViewController: UIViewController {
+import RxSwift
+ 
+final class ResultViewController: UIViewController {
     
     let titleLabel: UILabel =  {
         let label = UILabel()
@@ -41,16 +42,31 @@ class ResultViewController: UIViewController {
         button.setTitle("Start New Game", for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
-
-         return button
+        return button
     }()
-
+    
+    private var viewModel: ResultViewModel?
+    private let disposeBag = DisposeBag()
+    
+    convenience init(viewModel: ResultViewModel) {
+        self.init()
+        self.viewModel = viewModel
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
-        
+        bindViewModel()
+     }
+    
+    private func bindViewModel() {
+        guard let viewModel = viewModel else {
+            return
+        }
+        correctCounterLabel.text = viewModel.correctAnswers
+        incorrectCounterLabel.text = viewModel.incorrectAnswers
+        startButton.rx.tap.bind(to: viewModel.startNewGame).disposed(by: disposeBag)
     }
     
     private func setupViews() {
