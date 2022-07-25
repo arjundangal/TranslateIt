@@ -40,7 +40,6 @@ final class GameViewController: UIViewController {
     
     let correctCounterLabel: UILabel =  {
         let label = UILabel()
-        label.text = ""
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .right
@@ -49,7 +48,6 @@ final class GameViewController: UIViewController {
     
     let incorrectCounterLabel: UILabel =  {
         let label = UILabel()
-        label.text = ""
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .right
@@ -60,7 +58,8 @@ final class GameViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Correct", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
          return button
     }()
     
@@ -68,8 +67,9 @@ final class GameViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Incorrect", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-         return button
+        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
+        return button
     }()
     
     private var viewModel: GameViewModel?

@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewModel = GameViewModel(gameDataProvider: provider, roundCount: 15, timeLimit: 5)
         let gameVc = GameViewController(viewModel: viewModel)
        
-        window?.rootViewController = gameVc
+        window?.rootViewController = ResultViewController()
         window?.makeKeyAndVisible()
     }
  
