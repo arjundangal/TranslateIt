@@ -12,16 +12,17 @@ final class GameViewController: UIViewController {
     
     let titleLabel: UILabel =  {
         let label = UILabel()
-        label.text = "Is this correct translation?"
+        label.text = Constants.String.gameTitle
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.accessibilityIdentifier = "titleLabel"
         return label
     }()
     
     let questionLabel: UILabel =  {
         let label = UILabel()
-        label.text = "Question"
+        label.accessibilityIdentifier = "questionLabel"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -30,7 +31,7 @@ final class GameViewController: UIViewController {
     
     let answerLabel: UILabel =  {
         let label = UILabel()
-        label.text = "Answer"
+        label.accessibilityIdentifier = "answerLabel"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         return label
@@ -38,6 +39,7 @@ final class GameViewController: UIViewController {
     
     let correctCounterLabel: UILabel =  {
         let label = UILabel()
+        label.accessibilityIdentifier = "correctLabel"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .right
@@ -47,6 +49,7 @@ final class GameViewController: UIViewController {
     let incorrectCounterLabel: UILabel =  {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "incorrectLabel"
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .right
         return label
@@ -54,8 +57,9 @@ final class GameViewController: UIViewController {
     
     let correctBtn: UIButton = {
         let button = UIButton()
+        button.accessibilityIdentifier = "correctButton"
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Correct", for: .normal)
+        button.setTitle(Constants.String.correctButtonTitle, for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
         return button
@@ -63,8 +67,9 @@ final class GameViewController: UIViewController {
     
     let incorrectBtn: UIButton = {
         let button = UIButton()
+        button.accessibilityIdentifier = "incorrectButton"
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Incorrect", for: .normal)
+        button.setTitle(Constants.String.incorrectButtonTitle, for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
         return button

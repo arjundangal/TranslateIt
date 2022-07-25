@@ -17,6 +17,9 @@ struct Constants {
     struct String {
         static let correct = "Correct: "
         static let incorrect = "Incorrect: "
+        static let gameTitle = "Is this correct translation?"
+        static let correctButtonTitle = "Correct"
+        static let incorrectButtonTitle = "Incorrect"
      }
     
 }
