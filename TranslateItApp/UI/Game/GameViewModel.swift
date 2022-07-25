@@ -26,7 +26,6 @@ final class GameViewModel {
 
     init(gameDataProvider: GameDataProvider, roundCount: Int, timeLimit: Int){
 
-       
         var elapsedSeconds = 0
         var currentQuestionIndex = -1
         
@@ -38,14 +37,7 @@ final class GameViewModel {
         
         let gameCommands = Observable.merge(startGameCommand.map{_ in nil},attemptAnswer)
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
-            if elapsedSeconds > timeLimit - 1 {
-                attemptAnswer.onNext(nil)
-                elapsedSeconds = 0
-            }else {
-                elapsedSeconds += 1
-            }
-        })
+        var timer: Timer?
         
         let roundData = startGameCommand.flatMapLatest{ () -> Observable<[GameData]> in 
             currentQuestionIndex = -1
@@ -66,10 +58,22 @@ final class GameViewModel {
             
             currentQuestionIndex += 1
             if currentQuestionIndex < gameData.count {
+                if timer == nil {
+                    timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: {_ in
+                         print("elapsed seconds \(elapsedSeconds)")
+                         if elapsedSeconds > timeLimit - 1 {
+                             attemptAnswer.onNext(nil)
+                             elapsedSeconds = 0
+                         }else {
+                             elapsedSeconds += 1
+                         }
+                     })
+                }
                 return Observable.just(GameState.question(data: gameData[currentQuestionIndex]))
                 
             }else {
-                timer.invalidate()
+                timer?.invalidate()
+                timer = nil
                 return .just(.ended(result: .init(correctAttempts: correctAttempts.value, incorrectAttempts: incorrectAttempts.value)))
             }
         }
