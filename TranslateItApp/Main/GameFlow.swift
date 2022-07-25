@@ -21,7 +21,7 @@ final class GameFlow {
     func start() {
         let (gameViewModel,gameVc) = GameUIComposer.compose(with: loader)
         gameVc.finish = showResult
-        self.onRestartCommand = { 
+        onRestartCommand = {
             gameViewModel.input.startGameCommand.onNext(())
         }
         navigationController.viewControllers = [gameVc]
@@ -30,6 +30,7 @@ final class GameFlow {
     private func showResult(result: GameResult) {
         let viewModel = ResultViewModel(correctAttempts: result.correctAttempts, incorrectAttempts: result.incorrectAttempts, startNewGame: restartGame)
         let vc = ResultViewController(viewModel: viewModel)
+        vc.isModalInPresentation = true
         navigationController.present(vc, animated: true, completion: nil)
     }
     
