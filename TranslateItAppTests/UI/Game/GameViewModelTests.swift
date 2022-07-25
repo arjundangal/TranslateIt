@@ -102,6 +102,23 @@ class GameViewModelTests: XCTestCase {
         XCTAssertEqual(counter.events.last, .init(time: 0, value: .next("Incorrect: 1")))
      }
     
+    
+    func test_threeIncorrectAttempts_endsGame() {
+        let testQuestions = makeSampleQuestions()
+        let (sut, scheduler, disposeBag) = makeSUT(questions: testQuestions)
+        let expectedState = scheduler.createObserver(GameState.self)
+        let expectedResult = GameResult(correctAttempts: 0, incorrectAttempts: 3)
+        sut.output.gameState.bind(to: expectedState).disposed(by: disposeBag)
+
+        sut.input.startGameCommand.onNext(())
+        sut.input.attemptAnswer.onNext(nil)
+        sut.input.attemptAnswer.onNext(nil)
+        sut.input.attemptAnswer.onNext(nil)
+
+        XCTAssertEqual(expectedState.events.last, .init(time: 0, value: .next(.ended(result: expectedResult))))
+     }
+    
+    
     //MARK: - Helpers
      private func makeSUT(questions: WordList) -> (GameViewModel,TestScheduler,DisposeBag) {
         let loader = LoaderSpy(questions: questions)
