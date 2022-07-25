@@ -38,7 +38,7 @@ Game Data Provider provides 25 % of the correct pairs where as rest 75% can be e
 Didn't focus on UI part
 Didn't unit test timer part
 
-● What would be the first thing to improve or add if there had been more time
+### What would be the first thing to improve or add if there had been more time
 Increase Test Coverage
 
 ### Future Plans
