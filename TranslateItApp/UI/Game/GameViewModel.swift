@@ -58,6 +58,7 @@ final class GameViewModel {
             
             currentQuestionIndex += 1
             if currentQuestionIndex < gameData.count {
+                elapsedSeconds = 0
                 if timer == nil {
                     timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
                          print("elapsed seconds \(elapsedSeconds)")
