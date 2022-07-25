@@ -58,6 +58,8 @@ final class ResultViewController: UIViewController {
         view.backgroundColor = .white
         setupViews()
         bindViewModel()
+        startButton.addTarget(self, action: #selector(startBtnTapped), for: .touchUpInside)
+
      }
     
     private func bindViewModel() {
@@ -66,7 +68,10 @@ final class ResultViewController: UIViewController {
         }
         correctCounterLabel.text = viewModel.correctAnswers
         incorrectCounterLabel.text = viewModel.incorrectAnswers
-        startButton.rx.tap.bind(to: viewModel.startNewGame).disposed(by: disposeBag)
+     }
+    
+    @objc private func startBtnTapped() {
+        viewModel?.startNewGame()
     }
     
     private func setupViews() {

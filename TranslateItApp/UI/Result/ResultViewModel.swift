@@ -20,9 +20,9 @@ final class ResultViewModel {
         return "Incorrect: \(incorrectAttempts)"
     }
     
-    private(set) var startNewGame: PublishRelay<Void>
+    private(set) var startNewGame: (() -> Void)
     
-   init(correctAttempts: Int, incorrectAttempts: Int, startNewGame: PublishRelay<Void>) {
+    init(correctAttempts: Int, incorrectAttempts: Int, startNewGame: @escaping (() -> Void)) {
         self.correctAttempts = correctAttempts
         self.incorrectAttempts = incorrectAttempts
         self.startNewGame = startNewGame
