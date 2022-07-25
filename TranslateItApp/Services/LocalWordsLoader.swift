@@ -9,13 +9,17 @@ import Foundation
 
 final class LocalWordsLoader: WordListLoader {
     
-    private let url: URL
+    private let url: URL?
     
-    init(url: URL) {
+    init(url: URL?) {
         self.url = url
     }
     
     func loadWords(completion: @escaping (WordList) -> Void) {
+        guard let url = self.url else {
+            completion([])
+            return
+        }
         do {
             let data = try Data(contentsOf: url, options: .mappedIfSafe)
             let wordList =  try WordsMapper.map(data: data)

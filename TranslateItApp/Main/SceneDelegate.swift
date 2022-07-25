@@ -11,7 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    lazy var wordsURL = URL(fileURLWithPath:  Bundle.main.path(forResource: "words", ofType: "json")!)
+    lazy var filePath = Bundle.main.path(forResource: "words", ofType: "json")
+    
+    lazy var wordsURL = URL(fileURLWithPath: filePath ?? "")
     lazy var loader = LocalWordsLoader(url: wordsURL)
     
     lazy var navigationController = UINavigationController()
