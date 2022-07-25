@@ -20,7 +20,16 @@ class SceneDelegateTests:  XCTestCase {
         XCTAssertEqual(window.makeKeyAndVisibleCallCount, 1, "Expected to make window key and visible")
     }
     
-   
+    func test_configureWindow_configuresNavigationController() {
+        let sut = SceneDelegate()
+        sut.window = UIWindowSpy()
+
+        sut.configureWindow()
+
+        let rootViewController = sut.window?.rootViewController
+ 
+        XCTAssertTrue(rootViewController is UINavigationController, "Expected root as \(UINavigationController.self), got \(String(describing: rootViewController)) instead")
+    }
     
     private class UIWindowSpy: UIWindow {
         var makeKeyAndVisibleCallCount = 0
