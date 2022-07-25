@@ -19,7 +19,8 @@ class GameViewModelTests: XCTestCase {
         let (sut, scheduler, disposeBag) = makeSUT(questions: testQuestions)
         let expectedGameData = GameData(question: testQuestions.first?.originalWord ?? "",
                                         answer: testQuestions.first?.translatedWord ?? "",
-                                        isCorrect: true)
+                                        isCorrect: true,
+                                        duration: 5)
         let expectedState = scheduler.createObserver(GameState.self)
         sut.output.gameState.bind(to: expectedState).disposed(by: disposeBag)
         
@@ -35,7 +36,8 @@ class GameViewModelTests: XCTestCase {
         let (sut, scheduler, disposeBag) = makeSUT(questions: testQuestions)
         let expectedGameData = GameData(question: testQuestions[1].originalWord ,
                                         answer: testQuestions[1].translatedWord ,
-                                        isCorrect: true)
+                                        isCorrect: true,
+                                        duration: 5)
         let expectedState = scheduler.createObserver(GameState.self)
         sut.output.gameState.bind(to: expectedState).disposed(by: disposeBag)
         
@@ -50,7 +52,8 @@ class GameViewModelTests: XCTestCase {
         let (sut, scheduler, disposeBag) = makeSUT(questions: testQuestions)
         let expectedGameData = GameData(question: testQuestions[2].originalWord ,
                                         answer: testQuestions[2].translatedWord ,
-                                        isCorrect: true)
+                                        isCorrect: true,
+                                        duration: 5)
         let expectedState = scheduler.createObserver(GameState.self)
         sut.output.gameState.bind(to: expectedState).disposed(by: disposeBag)
         
@@ -103,7 +106,7 @@ class GameViewModelTests: XCTestCase {
      private func makeSUT(questions: WordList) -> (GameViewModel,TestScheduler,DisposeBag) {
         let loader = LoaderSpy(questions: questions)
         let provider = GameDataProvider(loader: loader)
-        let sut = GameViewModel(gameDataProvider: provider, roundCount: questions.count, timeLimit: 5)
+         let sut = GameViewModel(gameDataProvider: provider, roundCount: questions.count, roundDuration: 5)
          
          return (sut, TestScheduler(initialClock: 0), DisposeBag())
     }
