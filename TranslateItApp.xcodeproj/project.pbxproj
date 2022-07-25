@@ -31,6 +31,7 @@
 		98994D0F288EFBC300E76EEA /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98994D0E288EFBC300E76EEA /* SceneDelegateTests.swift */; };
 		98994D12288EFF8F00E76EEA /* ResultViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98994D11288EFF8F00E76EEA /* ResultViewModelTests.swift */; };
 		98994D14288F02BB00E76EEA /* LocalWordsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98994D13288F02BB00E76EEA /* LocalWordsLoaderTests.swift */; };
+		98994D17288F033E00E76EEA /* test_words.json in Resources */ = {isa = PBXBuildFile; fileRef = 98994D16288F033900E76EEA /* test_words.json */; };
 		98BC7961288D3AD60048892E /* GameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BC7960288D3AD60048892E /* GameViewModelTests.swift */; };
 		B3CA81BB0B6F6A0D7CA46CC7 /* Pods_TranslateItAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA9AD1255B438791BCF0181 /* Pods_TranslateItAppTests.framework */; };
 		D015F0B45CD6B476335AEF63 /* Pods_TranslateItApp_TranslateItAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C40D5301719F45BCB2D276C /* Pods_TranslateItApp_TranslateItAppUITests.framework */; };
@@ -87,6 +88,7 @@
 		98994D0E288EFBC300E76EEA /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
 		98994D11288EFF8F00E76EEA /* ResultViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModelTests.swift; sourceTree = "<group>"; };
 		98994D13288F02BB00E76EEA /* LocalWordsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWordsLoaderTests.swift; sourceTree = "<group>"; };
+		98994D16288F033900E76EEA /* test_words.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_words.json; sourceTree = "<group>"; };
 		98BC7960288D3AD60048892E /* GameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModelTests.swift; sourceTree = "<group>"; };
 		9B7AFBC125AEA92E3A637591 /* Pods-TranslateItApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslateItApp.release.xcconfig"; path = "Target Support Files/Pods-TranslateItApp/Pods-TranslateItApp.release.xcconfig"; sourceTree = "<group>"; };
 		9CEBAEA74877631A8B3BA921 /* Pods-TranslateItApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslateItApp.debug.xcconfig"; path = "Target Support Files/Pods-TranslateItApp/Pods-TranslateItApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		9874AB3D288BCB6400CC370D /* TranslateItAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				98994D15288F032900E76EEA /* Resources */,
 				98994D0D288EFBB300E76EEA /* Main */,
 				98BC795E288D3AB30048892E /* UI */,
 				9874AB72288C1B4100CC370D /* Services */,
@@ -300,6 +303,14 @@
 				98994D11288EFF8F00E76EEA /* ResultViewModelTests.swift */,
 			);
 			path = Result;
+			sourceTree = "<group>";
+		};
+		98994D15288F032900E76EEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				98994D16288F033900E76EEA /* test_words.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		98BC795E288D3AB30048892E /* UI */ = {
@@ -439,6 +450,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98994D17288F033E00E76EEA /* test_words.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
